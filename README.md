@@ -1,27 +1,24 @@
-# EinkaufslisteApp
+# GroceryList
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.1.
+Just a quick little grocery list app in Angular, done for a school assignement
 
-## Development server
+## Task
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This school assignement has to be done with angular.
+The elements and functionalities were assigned and can not be changed.
+We have to use deployd as a 'backend' with specific configs that could not be changed either.
+For anyone wanting to try this on their own PC, you have to either:
+* Run deployd with a collection called 'einkaufsliste'
+* Or switch the url making the calls in the service to another API that stores and provides data.
 
-## Code scaffolding
+The fields of either of those two things have to be (name: type):
+* id: string
+* produkt: string   // produkt == product
+* kosten: number    // kosten == costs
+* erledigt: number  // erledigt == done
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+If you want to change the name of those fields, you'll have to do a lot of refactoring.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Technologies used
+We have to use Angular, so obviously this project is based on Angular
+I also added in  [Materialize](http://materializecss.com), a [Material Design](https://material.io/guidelines/) based front-end framework
