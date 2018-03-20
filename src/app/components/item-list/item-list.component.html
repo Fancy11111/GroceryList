@@ -1,3 +1,27 @@
-<p>
-  item-list works!
-</p>
+<table *ngIf="items.length >= 1">
+  <thead>
+    <tr>
+      <th>Productname</th>
+      <th>Price</th>
+      <th>Got it!</th>
+      <th>Remove it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{item.produkt}}</td>
+      <td>{{item.kosten}}</td>
+      <td>
+          <div class="switch">
+            <label>
+              <input type="checkbox">
+              <span class="lever"></span>
+            </label>
+          </div>
+      </td>
+      <td>
+        <a href="#!"><i class="material-icons">delete</i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
