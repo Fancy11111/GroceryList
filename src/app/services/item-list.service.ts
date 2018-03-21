@@ -29,8 +29,7 @@ export class ItemListService {
 
   public getItems() {
     this.http.get<Item[]>(this.url, this.httpOptions).subscribe(items => {
-      this.items = items
-      //console.log(this.items);
+      this.items = items;
     });
   }
 
@@ -41,7 +40,17 @@ export class ItemListService {
           this.items.splice(index, 1);
         }
       });
-      //console.log(this.items);
+    });
+  }
+
+  public switchItemStatus(id: String, status: number) {
+    this.http.put<Item[]>(this.url + id, {"erledigt": status}, this.httpOptions).subscribe(() => {
+      this.items.forEach((element, index) => {
+        if (element.id == id) {
+          element.erledigt = status;
+          this.items.splice(index, 1, element)
+        }
+      });
     });
   }
 

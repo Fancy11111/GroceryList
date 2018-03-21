@@ -14,8 +14,8 @@
       <td>
           <div class="switch">
             <label>
-              <input type="checkbox">
-              <span class="lever"></span>
+              <input id={{item.id}} type="checkbox" [checked]="item.id == 0">
+              <span class="lever" (click)="switchItemStatus(item.id)"></span>
             </label>
           </div>
       </td>
