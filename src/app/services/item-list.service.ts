@@ -9,17 +9,12 @@ import { map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { Item } from '../shared/item';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable()
 export class ItemListService {
-  items: Item[] = [];
-
+  public items: Item[] = [];
   // Switch the content of this field to use another url
   // if you another backend or named your dpd collection differently
-  private url = 'http://localhost:2403/einkaufsliste/';
+  private url = 'http://localhost:2403/einkaufsliste';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -29,13 +24,14 @@ export class ItemListService {
 
   public addItem(item: Item) {
     this.log('Test', false);
-    return this.http.post<Item>(this.url, item, httpOptions)
-          .pipe(tap(_ => this.log(`added item id=${item.id}`, true))).subscribe((data: Item) => { this.items.push(data); });
+    return this.http.post<Item>(this.url, item, this.httpOptions).subscribe((data: Item) => { this.items.push(data); });
   }
 
-  public getItems() {
-    this.http.get<Item[]>(this.url, this.httpOptions).pipe(tap(data => this.items = data)).subscribe();
-    return this.items;
+  public async getItems() {
+    await this.http.get<Item[]>(this.url, this.httpOptions).subscribe(items => {
+      this.items = items
+      //console.log(this.items);
+    });
   }
 
   public log(message: string, notifyUser: boolean) {
