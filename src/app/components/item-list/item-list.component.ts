@@ -21,14 +21,19 @@ export class ItemListComponent implements OnInit {
     this.itemListService.getItems();
   }
 
-  deleteItem(id: String){
+  deleteItem(id: string) {
     this.itemListService.deleteItem(id);
   }
 
-  switchItemStatus(id: String) {
+  switchItemStatus(id: string) {
     $(this.elRef.nativeElement).find('#' + id).val();
-    const checked = !$(this.elRef.nativeElement).find('#' + id).prop("checked");
+    // The const checked gets its value assigned before the value of the
+    // checkbox actually switches, which is why we negate the value we get
+    const checked = !$(this.elRef.nativeElement).find('#' + id).prop('checked');
     checked ? this.itemListService.switchItemStatus(id, 1) : this.itemListService.switchItemStatus(id, 0);
-    //this.itemListService.switchItemStatus(id, )
+  }
+
+  isItemDone(item: Item): boolean {
+    return item.erledigt === 0;
   }
 }

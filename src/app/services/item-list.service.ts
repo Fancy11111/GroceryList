@@ -33,7 +33,7 @@ export class ItemListService {
     });
   }
 
-  public deleteItem(id: String) {
+  public deleteItem(id: string) {
     this.http.delete<Item[]>(this.url + id, this.httpOptions).subscribe(() => {
       this.items.forEach((element, index) => {
         if (element.id === id) {
@@ -43,7 +43,7 @@ export class ItemListService {
     });
   }
 
-  public switchItemStatus(id: String, status: number) {
+  public switchItemStatus(id: string, status: number) {
     this.http.put<Item[]>(this.url + id, {'erledigt': status}, this.httpOptions).subscribe(() => {
       this.items.forEach((element, index) => {
         if (element.id === id) {
