@@ -13,10 +13,14 @@ export class ItemListComponent implements OnInit {
   constructor(private itemListService: ItemListService) { }
 
   ngOnInit() {
-    this.getUsers();
+    this.getItems();
   }
 
-  getUsers() {
+  getItems() {
     this.itemListService.getItems();
+  }
+
+  deleteItem(id: String){
+    this.itemListService.deleteItem(id);
   }
 }

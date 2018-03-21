@@ -14,7 +14,7 @@ export class ItemListService {
   public items: Item[] = [];
   // Switch the content of this field to use another url
   // if you another backend or named your dpd collection differently
-  private url = 'http://localhost:2403/einkaufsliste';
+  private url = 'http://localhost:2403/einkaufsliste/';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -30,6 +30,17 @@ export class ItemListService {
   public getItems() {
     this.http.get<Item[]>(this.url, this.httpOptions).subscribe(items => {
       this.items = items
+      //console.log(this.items);
+    });
+  }
+
+  public deleteItem(id: String) {
+    this.http.delete<Item[]>(this.url + id, this.httpOptions).subscribe(() => {
+      this.items.forEach((element, index) => {
+        if(element.id == id){
+          this.items.splice(index, 1);
+        }
+      });
       //console.log(this.items);
     });
   }
