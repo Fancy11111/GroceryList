@@ -27,8 +27,8 @@ export class ItemListService {
     return this.http.post<Item>(this.url, item, this.httpOptions).subscribe((data: Item) => { this.items.push(data); });
   }
 
-  public async getItems() {
-    await this.http.get<Item[]>(this.url, this.httpOptions).subscribe(items => {
+  public getItems() {
+    this.http.get<Item[]>(this.url, this.httpOptions).subscribe(items => {
       this.items = items
       //console.log(this.items);
     });
