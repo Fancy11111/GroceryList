@@ -10,7 +10,6 @@ import { Item } from '../../shared/item';
 })
 
 export class ItemListComponent implements OnInit {
-  public items: Item[] = [];
   constructor(private itemListService: ItemListService) { }
 
   ngOnInit() {
@@ -19,6 +18,5 @@ export class ItemListComponent implements OnInit {
 
   getUsers() {
     this.itemListService.getItems();
-    this.items = this.itemListService.items;
   }
 }
