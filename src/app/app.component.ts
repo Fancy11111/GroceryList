@@ -9,4 +9,5 @@ import { ItemInputComponent } from './components/item-input/item-input.component
 })
 export class AppComponent {
   title = 'app';
+  header = 'My Grocery List';
 }

@@ -1,11 +1,19 @@
-<div>
-  <p> Productname:
-    <input [(ngModel)]="item.produkt" placeholder="Productname">
-  </p>
-  <p class="range-field"> Kosten
-    <input [(ngModel)]="item.kosten" type="range" id="test5" min="0.1" max="20" step="0.1" />
-  </p>
-  <a class="btn-floating btn-large waves-effect waves-light red" (click)="addItem()">
-    <i class="material-icons">add</i>
-  </a>
+<div class="card lime lighten-3">
+  <div class="card-content black-text">
+    <span class="card-title">Add a new Product to the list</span>
+    <div class="input-field">
+      <label for="name"> Productname: </label>
+      <input id="name" type="text" [(ngModel)]="item.produkt" >
+    </div>
+    <div>
+      <p class="range-field"> Price:
+        <input name="price" [(ngModel)]="item.kosten" class="grey darken-4" type="range" id="test5" min="0.1" max="20" step="0.1" />
+      </p>
+    </div>
+    <div class="card-action">
+      <a class="waves-effect waves-light btn" (click)="addItem()">
+        <i class="material-icons big">add</i>
+      </a>
+    </div>
+  </div>
 </div>
