@@ -17,7 +17,7 @@ export class ItemListComponent implements OnInit {
     this.getUsers();
   }
 
-  async getUsers() {
+  getUsers() {
     this.itemListService.getItems();
     this.items = this.itemListService.items;
   }
