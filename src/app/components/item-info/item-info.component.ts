@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../../services/message.service';
 
+declare var M: any; // Silence Typescript warning
 @Component({
   selector: 'app-item-info',
   templateUrl: './item-info.component.html',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit() {
+    this.messageService.getMessagesSubject().subscribe(msg => M.toast({ html: msg, classes: 'message' }) );
   }
 
 }

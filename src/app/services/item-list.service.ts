@@ -23,8 +23,12 @@ export class ItemListService {
   }
 
   public addItem(item: Item) {
-    this.log('Test', false);
-    return this.http.post<Item>(this.url, item, this.httpOptions).subscribe((data: Item) => { this.items.push(data); });
+    const exists = this.items.filter((value: Item, index: Number, array: Item[]) => value.produkt === item.produkt).length > 0;
+    if (!exists) {
+      return this.http.post<Item>(this.url, item, this.httpOptions).subscribe((data: Item) => { this.items.push(data); });
+    } else {
+      this.log('Item ' + item.produkt + ' already exists', true);
+    }
   }
 
   public getItems() {
