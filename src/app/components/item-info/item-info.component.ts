@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../services/message.service';
 
-declare var Materialize: any;
+declare var M: any; // Silence Typescript warning
 @Component({
   selector: 'app-item-info',
   templateUrl: './item-info.component.html',
@@ -12,11 +12,7 @@ export class ItemInfoComponent implements OnInit {
   constructor(private messageService: MessageService) { }
 
   ngOnInit() {
-    this.messageService.getMessages().subscribe((msg) => {
-      msg.forEach(element => {
-        console.log('Debug: went through element in subscribe() loop');
-      });
-    });
+    this.messageService.getMessagesSubject().subscribe(msg => M.toast({ html: msg, classes: 'message' }) );
   }
 
 }

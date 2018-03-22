@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of'
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class MessageService {
   messages: string[] = [];
+  messageObservable: Subject<string> = new Subject();
 
   constructor() { }
 
-  public log(message: string, notify: boolean) {
+  public log(message: string, notify?: boolean) {
     console.log(message);
     if (notify) {
       this.notify(message);
@@ -17,12 +19,13 @@ export class MessageService {
 
   public notify(message: string) {
     this.messages.push(message);
+    this.messageObservable.next(message);
     // TODO: Actually notify users using a message display component
   }
 
-  public getMessages(): Observable<string[]> {
-    console.log("Debug: getMessages() called");
-    return Observable.of(this.messages);
+  public getMessagesSubject(): Subject<string> {
+    console.log('Debug: getMessages() called');
+    return this.messageObservable;
   }
 
 }
