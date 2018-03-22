@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of'
 
 @Injectable()
 export class MessageService {
@@ -16,6 +18,11 @@ export class MessageService {
   public notify(message: string) {
     this.messages.push(message);
     // TODO: Actually notify users using a message display component
+  }
+
+  public getMessages(): Observable<string[]> {
+    console.log("Debug: getMessages() called");
+    return Observable.of(this.messages);
   }
 
 }
