@@ -12,8 +12,9 @@ For anyone wanting to try this on their own PC, you have to either:
 * Or switch the url making the calls in the service to another API that stores and provides data.
 
 The fields of either of those two things have to be (name: type):
+
 Fields | name | type
---- | --- | ---
+------ | ---- | ---
 __ | id | string
 __ | produkt | string
 __ | kosten | number
