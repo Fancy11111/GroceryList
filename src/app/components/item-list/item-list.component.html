@@ -1,3 +1,9 @@
+<p>
+  <label>
+    <input type="checkbox" class="filled-in" checked="checked" (click)="switchDisplay()"/>
+    <span>Display Items you already got</span>
+  </label>
+</p>
 <table *ngIf="itemListService.items.length >= 1" class="lime lighten-3 highlight bordered responsive-table">
   <thead>
     <tr class="lime darken-1">
@@ -9,19 +15,21 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of itemListService.items">
-      <td>{{item.produkt}}</td>
-      <td>{{item.kosten}}</td>
-      <td>
-          <div class="switch">
-            <label>
-              <input id={{item.id}} type="checkbox" [checked]="item.erledigt === 1">
-              <span class="lever" (click)="switchItemStatus(item.id)"></span>
-            </label>
-          </div>
-      </td>
-      <td>
-        <a href="#!" (click)="deleteItem(item.id)"><i class="material-icons">delete</i></a>
-      </td>
+      <ng-container *ngIf="item.erledigt !== displayChecked">
+        <td>{{item.produkt}}</td>
+        <td>{{item.kosten}}</td>
+        <td>
+            <div class="switch">
+              <label>
+                <input id={{item.id}} type="checkbox" [checked]="item.erledigt === 1">
+                <span class="lever" (click)="switchItemStatus(item.id)"></span>
+              </label>
+            </div>
+        </td>
+        <td>
+          <a href="#!" (click)="deleteItem(item.id)"><i class="material-icons">delete</i></a>
+        </td>
+      </ng-container>
     </tr>
   </tbody>
 </table>

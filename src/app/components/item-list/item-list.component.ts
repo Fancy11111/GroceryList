@@ -11,6 +11,7 @@ declare var $: any;
 })
 
 export class ItemListComponent implements OnInit {
+  public displayChecked = -1;
   constructor(private itemListService: ItemListService, private elRef: ElementRef) { }
 
   ngOnInit() {
@@ -23,6 +24,10 @@ export class ItemListComponent implements OnInit {
 
   deleteItem(id: string) {
     this.itemListService.deleteItem(id);
+  }
+
+  switchDisplay(){
+    this.displayChecked = this.displayChecked === -1 ? 1 : -1;
   }
 
   switchItemStatus(id: string) {
