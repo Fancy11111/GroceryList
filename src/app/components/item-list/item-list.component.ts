@@ -14,6 +14,7 @@ export class ItemListComponent implements OnInit {
   public displayChecked = -1;
   public sortBy = '';
   public sortOrder = true;
+  public icon = '';
   constructor(private itemListService: ItemListService, private elRef: ElementRef) { }
 
   ngOnInit() {
@@ -39,6 +40,7 @@ export class ItemListComponent implements OnInit {
       this.sortBy = field;
       this.sortOrder = true;
     }
+    this.icon = (this.sortOrder ? 'arrow_drop_down' : 'arrow_drop_up');
     this.itemListService.sort(this.sortBy, this.sortOrder);
     console.log(this.sortBy + this.sortOrder);
   }

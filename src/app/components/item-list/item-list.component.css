@@ -6,3 +6,8 @@ p label span {
     color: black;
     font-size: 1.4em
 }
+
+th{
+    padding-left: 0px;
+    padding-right: 0px
+}

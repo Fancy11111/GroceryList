@@ -7,9 +7,16 @@
 <table *ngIf="itemListService.items.length >= 1" class="lime lighten-3 highlight bordered responsive-table">
   <thead>
     <tr class="lime darken-1">
-      <th (click)="sort('produkt')">Productname</th>
-      <th (click)="sort('kosten')">Price</th>
-      <th (click)="sort('erledigt')">Got it!</th>
+      <th (click)="sort('produkt')">
+        Productname
+        <i class="material-icons prefix" *ngIf="(sortBy === 'produkt')">{{icon}}</i></th>
+      <th (click)="sort('kosten')">
+        Price
+        <i class="material-icons" *ngIf="(sortBy === 'kosten')">{{icon}}</i>
+      </th>
+      <th (click)="sort('erledigt')">
+        Got it!
+        <i class="material-icons" *ngIf="(sortBy === 'erledigt')">{{icon}}</i></th>
       <th>Remove it</th>
     </tr>
   </thead>
