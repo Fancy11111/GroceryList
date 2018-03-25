@@ -5,6 +5,7 @@ Just a quick little grocery list app in Angular, done for a school assignement
 ## How to get started
 
 You can either clone this repository with git clone https://github.com/Fancy11111/GroceryList.git or download the whole repository as a ZIP with [here](https://github.com/Fancy11111/GroceryList/archive/master.zip).
+
 For further informations on how to setup the API, see [Requirements to run this webapplication](https://github.com/Fancy11111/GroceryList#requirements-to-run-this-web-application).
 
 ## Task
