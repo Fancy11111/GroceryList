@@ -1,6 +1,11 @@
-# GroceryList
+# Grocery List
 
 Just a quick little grocery list app in Angular, done for a school assignement
+
+## How to get started
+
+You can either clone this repository with git clone https://github.com/Fancy11111/GroceryList.git or download the whole repository as a ZIP with [here](https://github.com/Fancy11111/GroceryList/archive/master.zip).
+For further informations on how to setup the API, see [Requirements to run this webapplication](https://github.com/Fancy11111/GroceryList#requirements-to-run-this-web-application).
 
 ## Task
 
@@ -8,7 +13,7 @@ This school assignement has to be done with angular.
 The elements and functionalities were assigned and can not be changed.
 We have to use deployd as a 'backend' with specific configs that could not be changed either.
 
-## Requirements for running this web application
+## Requirements to run this web application
 
 For anyone wanting to try this on their own PC, you have to either:
 * Run deployd with a collection called 'einkaufsliste'
