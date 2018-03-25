@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { ItemListService } from '../../services/item-list.service';
 import { Item } from '../../shared/item';
 
@@ -11,7 +11,7 @@ declare var $: any;
 })
 
 export class ItemListComponent implements OnInit {
-  public displayChecked = -1;
+  @Input() public displayChecked = true;
   public sortBy = '';
   public sortOrder = true;
   public icon = '';
@@ -27,10 +27,6 @@ export class ItemListComponent implements OnInit {
 
   deleteItem(id: string) {
     this.itemListService.deleteItem(id);
-  }
-
-  switchDisplay() {
-    this.displayChecked = this.displayChecked === -1 ? 1 : -1;
   }
 
   public sort(field: string) {

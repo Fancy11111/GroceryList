@@ -1,6 +1,6 @@
 <p>
   <label>
-    <input type="checkbox" class="filled-in" checked="checked" (click)="switchDisplay()"/>
+    <input type="checkbox" class="filled-in" [(ngModel)]="displayChecked"/>
     <span>Display Items you already got</span>
   </label>
 </p>
@@ -22,7 +22,7 @@
   </thead>
   <tbody>
     <ng-container *ngFor="let item of itemListService.items">
-      <tr *ngIf="item.erledigt !== displayChecked">
+      <tr *ngIf="(displayChecked == item.erledigt || item.erledigt == 0)">
         <td>{{item.produkt}}</td>
         <td>{{item.kosten}}</td>
         <td>
