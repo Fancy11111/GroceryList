@@ -47,6 +47,7 @@ export class ItemListService {
   public getItems() {
     this.http.get<Item[]>(this.url, this.httpOptions).subscribe(items => {
       this.items = items;
+      this.itemsChangedSubject.next();
     });
   }
 
