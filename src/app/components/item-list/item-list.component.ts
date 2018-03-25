@@ -12,6 +12,8 @@ declare var $: any;
 
 export class ItemListComponent implements OnInit {
   public displayChecked = -1;
+  public sortBy = '';
+  public sortOrder = true;
   constructor(private itemListService: ItemListService, private elRef: ElementRef) { }
 
   ngOnInit() {
@@ -26,8 +28,19 @@ export class ItemListComponent implements OnInit {
     this.itemListService.deleteItem(id);
   }
 
-  switchDisplay(){
+  switchDisplay() {
     this.displayChecked = this.displayChecked === -1 ? 1 : -1;
+  }
+
+  public sort(field: string) {
+    if (field === this.sortBy) {
+      this.sortOrder = !this.sortOrder;
+    } else {
+      this.sortBy = field;
+      this.sortOrder = true;
+    }
+    this.itemListService.sort(this.sortBy, this.sortOrder);
+    console.log(this.sortBy + this.sortOrder);
   }
 
   switchItemStatus(id: string) {

@@ -7,9 +7,9 @@
 <table *ngIf="itemListService.items.length >= 1" class="lime lighten-3 highlight bordered responsive-table">
   <thead>
     <tr class="lime darken-1">
-      <th>Productname</th>
-      <th>Price</th>
-      <th>Got it!</th>
+      <th (click)="sort('produkt')">Productname</th>
+      <th (click)="sort('kosten')">Price</th>
+      <th (click)="sort('erledigt')">Got it!</th>
       <th>Remove it</th>
     </tr>
   </thead>
