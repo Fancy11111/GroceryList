@@ -14,18 +14,24 @@ import { ItemInputComponent } from './components/item-input/item-input.component
 import { ItemListService } from './services/item-list.service';
 import { MessageService } from './services/message.service';
 import { ItemInfoComponent } from './components/item-info/item-info.component';
+import { ListWindowComponent } from './components/list-window/list-window.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemListComponent,
     ItemInputComponent,
-    ItemInfoComponent
+    ItemInfoComponent,
+    ListWindowComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [ItemListService, MessageService],
   bootstrap: [AppComponent]

@@ -11,7 +11,7 @@ declare var $: any;
 })
 
 export class ItemListComponent implements OnInit {
-  @Input() public displayChecked = true;
+  @Input() public displayChecked = 1;
   public sortBy = '';
   public sortOrder = true;
   public icon = '';
@@ -47,6 +47,7 @@ export class ItemListComponent implements OnInit {
     // checkbox actually switches, which is why we negate the value we get
     const checked = !$(this.elRef.nativeElement).find('#' + id).prop('checked');
     checked ? this.itemListService.switchItemStatus(id, 1) : this.itemListService.switchItemStatus(id, 0);
+    console.log(checked);
   }
 
   isItemDone(item: Item): boolean {
