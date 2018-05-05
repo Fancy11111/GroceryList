@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 // http request to the backend (in my case deployd)
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable ,  Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { MessageService } from './message.service';
@@ -19,25 +18,18 @@ export class ItemListService {
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  public itemsChangedSubject = new Subject<string>();
+  public undoneItems = 0;
+  public priceSum = 0;
 
   constructor(private http: HttpClient, private messageService: MessageService) {
   }
 
-  public getItemsChangedEmitter(): Subject<string> {
-    return this.itemsChangedSubject;
-  }
-
-  public emitItemsChanged() {
-    this.itemsChangedSubject.next();
-  }
-
   public addItem(item: Item) {
-    const exists = this.items.filter((value: Item, index: Number, array: Item[]) => value.produkt === item.produkt).length > 0;
+    const exists = this.items.filter((value: Item) => value.produkt === item.produkt).length > 0;
     if (!exists) {
       this.http.post<Item>(this.url, item, this.httpOptions).subscribe((data: Item) => {
         this.items.push(data);
-        this.emitItemsChanged();
+        this.reEval();
       });
     } else {
       this.log('Item ' + item.produkt + ' already exists', true);
@@ -47,7 +39,7 @@ export class ItemListService {
   public getItems() {
     this.http.get<Item[]>(this.url, this.httpOptions).subscribe(items => {
       this.items = items;
-      this.itemsChangedSubject.next();
+      this.reEval();
     });
   }
 
@@ -56,9 +48,9 @@ export class ItemListService {
       this.items.forEach((element, index) => {
         if (element.id === id) {
           this.items.splice(index, 1);
-          this.emitItemsChanged();
         }
       });
+      this.reEval();
     });
   }
 
@@ -68,9 +60,9 @@ export class ItemListService {
         if (element.id === id) {
           element.erledigt = status;
           this.items.splice(index, 1, element);
-          this.emitItemsChanged();
         }
       });
+      this.reEval();
     });
   }
 
@@ -109,6 +101,18 @@ export class ItemListService {
       return -1;
     }
     return 0;
+  }
+
+  public reEval() {
+    this.priceSum = 0;
+    this.undoneItems = 0;
+
+    this.items.forEach(item => {
+      if (item.erledigt === 0) {
+        this.priceSum += item.kosten;
+        this.undoneItems += 1;
+      }
+    });
   }
 
   public log(message: string, notifyUser: boolean) {
